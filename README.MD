@@ -17,13 +17,14 @@ architecture components for the first time.
 
 My thoughts on architecture components after writing this test.
 On the plus side
-- fast and easy to write i.e. many things are handled and are ready out of the box
-- good for a demo app
+- fast and easy to write i.e. many things are handled and are ready out of the box, such as
+lifecycle, accidental leaking of activity or fragment, resubscription
+- good tool for a demo app
 
 Minuses I noticed
-- polluted with android dependencies, bad separation of concerns 
+- LiveData and ViewModel are polluted with android dependencies, bad separation of concerns 
 for example no easy separation of threading for testing
-- abstraction itself takes too many responsibilities such as lifecycle, threading, pushing values
+- LiveData abstraction itself takes too many responsibilities such as lifecycle, threading, pushing values
 - testing is not so proficient and mature as for rxJava subjects
 
 ### Regarding dependency injection:
