@@ -12,8 +12,8 @@ I have used my common suite of libraries for rapid development.
 
 ### Regarding architecture:
 
-I'm using a mix of MVP and MVI in production at my current project, but I decided to use and test here 
-architecture components for the first time.
+I'm using a mix of MVP and MVI UI patterns and Clean Architecture in production at my current project, 
+but I decided to use and test here architecture components for the first time.
 
 My thoughts on architecture components after writing this test.
 On the plus side
