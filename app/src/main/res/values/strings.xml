@@ -1,0 +1,4 @@
+<resources>
+  <string name="app_name">BabylonTest</string>
+  <string name="posts_number_comments">%s comments</string>
+</resources>
