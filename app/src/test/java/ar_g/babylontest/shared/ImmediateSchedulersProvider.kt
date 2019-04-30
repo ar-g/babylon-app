@@ -1,6 +1,6 @@
 package ar_g.babylontest.shared
 
-import ar_g.babylontest.shared.SchedulersProvider
+import ar_g.babylontest.shared.rx.SchedulersProvider
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 

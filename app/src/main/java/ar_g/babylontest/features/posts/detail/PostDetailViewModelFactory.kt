@@ -3,7 +3,7 @@ package ar_g.babylontest.features.posts.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ar_g.babylontest.features.posts.PostsOperations
-import ar_g.babylontest.shared.SchedulersProvider
+import ar_g.babylontest.shared.rx.SchedulersProvider
 
 class PostDetailViewModelFactory(
     private val postsOperations: PostsOperations,

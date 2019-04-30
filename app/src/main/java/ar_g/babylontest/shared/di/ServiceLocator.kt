@@ -6,8 +6,8 @@ import androidx.annotation.VisibleForTesting
 import ar_g.babylontest.features.posts.PostsMapperImpl
 import ar_g.babylontest.features.posts.PostsOperations
 import ar_g.babylontest.features.posts.PostsOperationsImpl
-import ar_g.babylontest.shared.AppSchedulerProvider
-import ar_g.babylontest.shared.SchedulersProvider
+import ar_g.babylontest.shared.rx.AppSchedulerProvider
+import ar_g.babylontest.shared.rx.SchedulersProvider
 import ar_g.babylontest.shared.api.Api
 import ar_g.babylontest.shared.res.ResStorageImpl
 

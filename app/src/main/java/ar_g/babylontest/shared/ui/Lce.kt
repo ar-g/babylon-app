@@ -1,4 +1,4 @@
-package ar_g.babylontest.shared
+package ar_g.babylontest.shared.ui
 
 sealed class Lce<out T>{
     class Loading<out T>: Lce<T>() {

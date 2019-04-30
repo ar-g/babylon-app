@@ -1,4 +1,4 @@
-package ar_g.babylontest.shared
+package ar_g.babylontest.shared.rx
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

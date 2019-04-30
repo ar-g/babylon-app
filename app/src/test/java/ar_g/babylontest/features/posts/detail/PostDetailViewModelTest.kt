@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import ar_g.babylontest.features.posts.fakes.FakeErrorPostsOperations
 import ar_g.babylontest.features.posts.fakes.FakePostsOperations
 import ar_g.babylontest.shared.ImmediateSchedulersProvider
-import ar_g.babylontest.shared.Lce
+import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.assertValues
 import org.junit.Rule
 import org.junit.Test

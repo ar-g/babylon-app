@@ -2,7 +2,7 @@ package ar_g.babylontest.features.posts
 
 import ar_g.babylontest.features.posts.detail.PostDetailUiModel
 import ar_g.babylontest.features.posts.list.PostUiModel
-import ar_g.babylontest.shared.SchedulersProvider
+import ar_g.babylontest.shared.rx.SchedulersProvider
 import ar_g.babylontest.shared.api.Api
 import ar_g.babylontest.shared.api.model.Comment
 import ar_g.babylontest.shared.api.model.User

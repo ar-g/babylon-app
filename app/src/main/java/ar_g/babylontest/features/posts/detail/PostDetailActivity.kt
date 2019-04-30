@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import e.ar_g.babylontest.R
 import ar_g.babylontest.features.posts.list.PostUiModel
-import ar_g.babylontest.shared.Lce
+import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.di.ServiceLocator
 import kotlinx.android.synthetic.main.activity_post_detail.*
 import java.lang.IllegalArgumentException

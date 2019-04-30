@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ar_g.babylontest.features.posts.PostsOperations
 import ar_g.babylontest.features.posts.list.PostUiModel
-import ar_g.babylontest.shared.Lce
-import ar_g.babylontest.shared.SchedulersProvider
-import io.reactivex.android.schedulers.AndroidSchedulers
+import ar_g.babylontest.shared.ui.Lce
+import ar_g.babylontest.shared.rx.SchedulersProvider
 import io.reactivex.disposables.Disposable
 
 class PostDetailViewModel(

@@ -8,7 +8,7 @@ import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import e.ar_g.babylontest.R
 import ar_g.babylontest.features.posts.detail.PostDetailActivity
-import ar_g.babylontest.shared.Lce
+import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.di.ServiceLocator
 import kotlinx.android.synthetic.main.posts_activity.*
 
