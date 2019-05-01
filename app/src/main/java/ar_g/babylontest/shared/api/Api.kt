@@ -25,7 +25,7 @@ interface Api {
     companion object {
         fun create(): Api {
             return Retrofit.Builder()
-                .baseUrl("http://jsonplaceholder.typicode.com")
+                .baseUrl("https://jsonplaceholder.typicode.com")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
