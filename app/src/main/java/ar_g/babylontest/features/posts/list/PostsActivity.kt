@@ -34,7 +34,7 @@ class PostsActivity : AppCompatActivity() {
         val postsViewModel: PostsViewModel = ViewModelProviders.of(this, factory).get(
             PostsViewModel::class.java)
 
-        postsViewModel.postsUiModels.observe(this, Observer { lce ->
+        postsViewModel.connect(this, stateConsumer = { lce: Lce<List<com.example.posts_sdk.domain.response.PostUiModel>> ->
             when(lce){
                 is Lce.Loading -> {
                     srl.isRefreshing = true
@@ -49,7 +49,6 @@ class PostsActivity : AppCompatActivity() {
                 }
             }
         })
-        postsViewModel.getPosts()
     }
 }
 

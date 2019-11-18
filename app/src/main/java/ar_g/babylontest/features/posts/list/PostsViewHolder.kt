@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.post_item.view.*
 
 class PostsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(postUiModel: PostUiModel) {
+    fun bind(postUiModel: com.example.posts_sdk.domain.response.PostUiModel) {
         itemView.tvTitle.text = postUiModel.title
     }
 }

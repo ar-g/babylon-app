@@ -1,4 +1,4 @@
-package ar_g.babylontest.shared.api.model
+package com.example.posts_sdk.gateway.network.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package ar_g.babylontest.features.posts.list
+package com.example.posts_sdk.domain.response
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

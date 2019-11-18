@@ -2,7 +2,7 @@ package ar_g.babylontest.features.posts.fakes
 
 import ar_g.babylontest.shared.api.Api
 import ar_g.babylontest.shared.api.model.Comment
-import ar_g.babylontest.shared.api.model.Post
+import com.example.posts_sdk.gateway.network.response.Post
 import ar_g.babylontest.shared.api.model.User
 import io.reactivex.Single
 
@@ -11,7 +11,7 @@ open class FakeApi: Api {
         val USER = User("author")
     }
 
-    override fun posts(): Single<List<Post>> {
+    override fun posts(): Single<List<com.example.posts_sdk.gateway.network.response.Post>> {
         return Single.just(emptyList())
     }
 

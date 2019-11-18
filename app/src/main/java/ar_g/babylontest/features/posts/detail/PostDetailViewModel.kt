@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ar_g.babylontest.features.posts.PostsOperations
-import ar_g.babylontest.features.posts.list.PostUiModel
+import com.example.posts_sdk.domain.response.PostUiModel
 import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.rx.SchedulersProvider
 import io.reactivex.disposables.Disposable
@@ -21,7 +21,7 @@ class PostDetailViewModel(
 
     private var disposable: Disposable? = null
 
-    fun getPostDetail(postUiModel: PostUiModel) {
+    fun getPostDetail(postUiModel: com.example.posts_sdk.domain.response.PostUiModel) {
         if (_postDetailUiModel.value == null) {
             disposable = postsOperations.getPostDetail(postUiModel)
                 .observeOn(schedulersProvider.mainThread())

@@ -2,9 +2,9 @@ package ar_g.babylontest.features.posts
 
 import ar_g.babylontest.features.posts.detail.PostDetailUiModel
 import ar_g.babylontest.features.posts.fakes.FakeResStorage
-import ar_g.babylontest.features.posts.list.PostUiModel
+import com.example.posts_sdk.domain.response.PostUiModel
 import ar_g.babylontest.shared.api.model.Comment
-import ar_g.babylontest.shared.api.model.Post
+import com.example.posts_sdk.gateway.network.response.Post
 import ar_g.babylontest.shared.api.model.User
 import e.ar_g.babylontest.R
 import org.junit.Assert.*
@@ -25,13 +25,13 @@ class PostsMapperTest {
     fun mapPostCorrectly() {
         //given
         val postsMapper = PostsMapperImpl(FakeResStorage())
-        val post = Post(userId, title, body, userId)
+        val post = com.example.posts_sdk.gateway.network.response.Post(userId, title, body, userId)
 
         //when
         val postUiModel = postsMapper.mapPost(post)
 
         //then
-        val expectedPostUiModel = PostUiModel(userId, postId, title, body)
+        val expectedPostUiModel = com.example.posts_sdk.domain.response.PostUiModel(userId, postId, title, body)
         assertEquals(expectedPostUiModel, postUiModel)
     }
 
@@ -39,13 +39,20 @@ class PostsMapperTest {
     fun mapPostsCorrectly() {
         //given
         val postsMapper = PostsMapperImpl(FakeResStorage())
-        val post = Post(userId, title, body, userId)
+        val post = com.example.posts_sdk.gateway.network.response.Post(userId, title, body, userId)
 
         //when
         val postUiModels = postsMapper.mapPosts(mutableListOf(post))
 
         //then
-        val expectedUIModels = mutableListOf(PostUiModel(userId, postId, title, body))
+        val expectedUIModels = mutableListOf(
+            com.example.posts_sdk.domain.response.PostUiModel(
+                userId,
+                postId,
+                title,
+                body
+            )
+        )
         assertEquals(expectedUIModels, postUiModels)
     }
 
@@ -53,7 +60,7 @@ class PostsMapperTest {
     fun mapPostDetailCorrectly() {
         //given
         val postsMapper = PostsMapperImpl(FakeResStorage())
-        val postUiModel = PostUiModel(userId, postId, title, body)
+        val postUiModel = com.example.posts_sdk.domain.response.PostUiModel(userId, postId, title, body)
         val user = User(name)
         val comments = mutableListOf(Comment())
 
@@ -72,7 +79,7 @@ class PostsMapperTest {
         //given
         val fakeResStorage = spy(FakeResStorage())
         val postsMapper = PostsMapperImpl(fakeResStorage)
-        val postUiModel = PostUiModel(userId, postId, title, body)
+        val postUiModel = com.example.posts_sdk.domain.response.PostUiModel(userId, postId, title, body)
         val user = User(name)
         val comments = mutableListOf(Comment())
 

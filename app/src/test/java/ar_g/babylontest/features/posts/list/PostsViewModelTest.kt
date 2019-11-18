@@ -5,7 +5,6 @@ import ar_g.babylontest.features.posts.fakes.FakeErrorPostsOperations
 import ar_g.babylontest.features.posts.fakes.FakePostsOperations
 import ar_g.babylontest.shared.ImmediateSchedulersProvider
 import ar_g.babylontest.shared.ui.Lce
-import ar_g.babylontest.shared.assertValues
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.*
@@ -24,8 +23,8 @@ class PostsViewModelTest {
 
         //then
         val values = arrayOf(
-            Lce.Loading<List<PostUiModel>>(),
-            Lce.Content<List<PostUiModel>>(FakePostsOperations.POSTS)
+            Lce.Loading<List<com.example.posts_sdk.domain.response.PostUiModel>>(),
+            Lce.Content<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakePostsOperations.POSTS)
         )
         viewModel.postsUiModels.assertValues(*values) {
             //when
@@ -42,8 +41,8 @@ class PostsViewModelTest {
 
         //then
         val values = arrayOf(
-            Lce.Loading<List<PostUiModel>>(),
-            Lce.Error<List<PostUiModel>>(FakeErrorPostsOperations.ERROR_MSG)
+            Lce.Loading<List<com.example.posts_sdk.domain.response.PostUiModel>>(),
+            Lce.Error<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakeErrorPostsOperations.ERROR_MSG)
         )
         viewModel.postsUiModels.assertValues(*values) {
             //when
