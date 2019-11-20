@@ -2,19 +2,15 @@ package ar_g.babylontest.features.posts.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ar_g.babylontest.features.posts.PostsOperations
-import ar_g.babylontest.shared.rx.SchedulersProvider
+import com.example.posts_sdk.PostsApi
 
 class PostsViewModelFactory(
-    private val postsOperations: PostsOperations,
-    private val schedulersProvider: SchedulersProvider
+    private val postsApi: PostsApi
 ) :
     ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass != PostsViewModel::class.java) {
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-        return PostsViewModel(postsOperations,schedulersProvider) as T
+        require(modelClass == PostsViewModel::class.java) { "Unknown ViewModel class" }
+        return PostsViewModel(postsApi) as T
     }
 }

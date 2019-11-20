@@ -1,15 +1,16 @@
-package ar_g.babylontest.features.posts
+package ar_g.babylontest.features.posts.detail
 
+import ar_g.babylontest.features.posts.detail.mapper.PostDetailMapper
+import ar_g.babylontest.features.posts.detail.usecase.PostDetailOperationsImpl
 import ar_g.babylontest.features.posts.fakes.FakeApi
 import ar_g.babylontest.features.posts.fakes.FakeMapper
 import ar_g.babylontest.shared.ImmediateSchedulersProvider
-import com.example.posts_sdk.domain.response.PostUiModel
 import ar_g.babylontest.shared.api.Api
 import io.reactivex.Single
 import org.junit.Test
 import org.mockito.Mockito.*
 
-class PostsOperationsTest {
+class PostDetailOperationsTest {
 
     /*VERIFY TESTS*/
 
@@ -17,9 +18,13 @@ class PostsOperationsTest {
     fun userAndCommentsCalledWithProperIds() {
         //given
         val api = spy(FakeApi())
-        val mapper = mock(PostsMapper::class.java)
+        val mapper = mock(PostDetailMapper::class.java)
         val postsOperationsImpl =
-            PostsOperationsImpl(api, mapper, ImmediateSchedulersProvider())
+            PostDetailOperationsImpl(
+                api,
+                mapper,
+                ImmediateSchedulersProvider()
+            )
 
         //when
         val userId = 1
@@ -36,7 +41,8 @@ class PostsOperationsTest {
         //given
         val api = FakeApi()
         val mapper = spy(FakeMapper())
-        val postsOperationsImpl = PostsOperationsImpl(api, mapper,
+        val postsOperationsImpl = PostDetailOperationsImpl(
+            api, mapper,
             ImmediateSchedulersProvider()
         )
 
@@ -59,7 +65,8 @@ class PostsOperationsTest {
         `when`(api.comments(anyInt())).thenReturn(Single.just(emptyList()))
         `when`(api.user(anyInt())).thenReturn(Single.error(Throwable()))
         val mapper = spy(FakeMapper())
-        val postsOperationsImpl = PostsOperationsImpl(api, mapper,
+        val postsOperationsImpl = PostDetailOperationsImpl(
+            api, mapper,
             ImmediateSchedulersProvider()
         )
 

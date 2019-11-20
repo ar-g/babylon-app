@@ -1,8 +1,8 @@
 package ar_g.babylontest.features.posts.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import ar_g.babylontest.features.posts.fakes.FakeErrorPostsOperations
-import ar_g.babylontest.features.posts.fakes.FakePostsOperations
+import ar_g.babylontest.features.posts.fakes.FakeErrorPostDetailOperations
+import ar_g.babylontest.features.posts.fakes.FakePostDetailOperations
 import ar_g.babylontest.shared.ImmediateSchedulersProvider
 import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.assertValues
@@ -16,28 +16,27 @@ class PostDetailViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     /*STATE TESTS*/
-
     @Test
     fun getPostDetailReturnsCorrectStates() {
 
         //given
         val viewModel = PostDetailViewModel(
-            FakePostsOperations(),
+            FakePostDetailOperations(),
             ImmediateSchedulersProvider()
         )
 
         //then
-        val title = FakePostsOperations.POST.title
-        val body = FakePostsOperations.POST.body
+        val title = FakePostDetailOperations.POST.title
+        val body = FakePostDetailOperations.POST.body
         val firstPostDetail = PostDetailUiModel(title, body, "", "")
         val values = arrayOf(
             Lce.Content(firstPostDetail),
             Lce.Loading<PostDetailUiModel>(),
-            Lce.Content(FakePostsOperations.POST_DETAIL)
+            Lce.Content(FakePostDetailOperations.POST_DETAIL)
         )
         viewModel.postDetailUiModel.assertValues(*values) {
             //when
-            viewModel.getPostDetail(FakePostsOperations.POST)
+            viewModel.getPostDetail(FakePostDetailOperations.POST)
         }
     }
 
@@ -46,22 +45,22 @@ class PostDetailViewModelTest {
 
         //given
         val viewModel = PostDetailViewModel(
-            FakeErrorPostsOperations(),
+            FakeErrorPostDetailOperations(),
             ImmediateSchedulersProvider()
         )
 
         //then
-        val title = FakePostsOperations.POST.title
-        val body = FakePostsOperations.POST.body
+        val title = FakePostDetailOperations.POST.title
+        val body = FakePostDetailOperations.POST.body
         val firstPostDetail = PostDetailUiModel(title, body, "", "")
         val values = arrayOf(
             Lce.Content(firstPostDetail),
             Lce.Loading<PostDetailUiModel>(),
-            Lce.Error(FakeErrorPostsOperations.ERROR_MSG)
+            Lce.Error(FakeErrorPostDetailOperations.ERROR_MSG)
         )
         viewModel.postDetailUiModel.assertValues(*values) {
             //when
-            viewModel.getPostDetail(FakePostsOperations.POST)
+            viewModel.getPostDetail(FakePostDetailOperations.POST)
         }
     }
 
@@ -70,9 +69,9 @@ class PostDetailViewModelTest {
     @Test
     fun getPostDetailNotCalledAgain() {
         //given
-        val postsOperations = Mockito.spy(FakeErrorPostsOperations())
+        val postsOperations = Mockito.spy(FakeErrorPostDetailOperations())
         val viewModel = PostDetailViewModel(postsOperations, ImmediateSchedulersProvider())
-        val postUiModel = FakePostsOperations.POST
+        val postUiModel = FakePostDetailOperations.POST
 
         //when
         viewModel.getPostDetail(postUiModel)

@@ -13,9 +13,6 @@ import retrofit2.http.Query
 
 interface Api {
 
-    @GET("/posts")
-    fun posts(): Single<List<com.example.posts_sdk.gateway.network.response.Post>>
-
     @GET("/users/{id}")
     fun user(@Path("id") userId: Int): Single<User>
 

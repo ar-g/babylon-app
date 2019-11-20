@@ -10,6 +10,7 @@ import e.ar_g.babylontest.R
 import ar_g.babylontest.features.posts.detail.PostDetailActivity
 import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.di.ServiceLocator
+import com.example.posts_sdk.domain.response.PostUiModel
 import kotlinx.android.synthetic.main.posts_activity.*
 
 class PostsActivity : AppCompatActivity() {
@@ -30,11 +31,10 @@ class PostsActivity : AppCompatActivity() {
         srl.isEnabled = false
 
         val serviceLocator = ServiceLocator.instance(applicationContext)
-        val factory = PostsViewModelFactory(serviceLocator.postsOperations(), serviceLocator.schedulersProvider())
-        val postsViewModel: PostsViewModel = ViewModelProviders.of(this, factory).get(
-            PostsViewModel::class.java)
+        val factory = PostsViewModelFactory(serviceLocator.postsApi())
+        val postsViewModel: PostsViewModel = ViewModelProviders.of(this, factory).get(PostsViewModel::class.java)
 
-        postsViewModel.connect(this, stateConsumer = { lce: Lce<List<com.example.posts_sdk.domain.response.PostUiModel>> ->
+        postsViewModel.connect(this, stateConsumer = { lce: Lce<List<PostUiModel>> ->
             when(lce){
                 is Lce.Loading -> {
                     srl.isRefreshing = true

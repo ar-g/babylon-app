@@ -1,15 +1,18 @@
 package ar_g.babylontest.features.posts.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import ar_g.babylontest.features.posts.fakes.FakeErrorPostsOperations
-import ar_g.babylontest.features.posts.fakes.FakePostsOperations
+import ar_g.babylontest.features.posts.fakes.FakeErrorPostDetailOperations
+import ar_g.babylontest.features.posts.fakes.FakePostDetailOperations
 import ar_g.babylontest.shared.ImmediateSchedulersProvider
 import ar_g.babylontest.shared.ui.Lce
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.*
+import org.spekframework.spek2.Spek
 
-class PostsViewModelTest {
+class PostsViewModelTest: Spek({
+
+}) {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
@@ -19,12 +22,12 @@ class PostsViewModelTest {
     fun getPostsReturnsCorrectStates() {
 
         //given
-        val viewModel = PostsViewModel(FakePostsOperations(), ImmediateSchedulersProvider())
+        val viewModel = PostsViewModel(FakePostDetailOperations(), ImmediateSchedulersProvider())
 
         //then
         val values = arrayOf(
             Lce.Loading<List<com.example.posts_sdk.domain.response.PostUiModel>>(),
-            Lce.Content<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakePostsOperations.POSTS)
+            Lce.Content<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakePostDetailOperations.POSTS)
         )
         viewModel.postsUiModels.assertValues(*values) {
             //when
@@ -35,14 +38,14 @@ class PostsViewModelTest {
     @Test
     fun getPostsReturnsCorrectStatesWhenErrorHappens() {
         val viewModel = PostsViewModel(
-            FakeErrorPostsOperations(),
+            FakeErrorPostDetailOperations(),
             ImmediateSchedulersProvider()
         )
 
         //then
         val values = arrayOf(
             Lce.Loading<List<com.example.posts_sdk.domain.response.PostUiModel>>(),
-            Lce.Error<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakeErrorPostsOperations.ERROR_MSG)
+            Lce.Error<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakeErrorPostDetailOperations.ERROR_MSG)
         )
         viewModel.postsUiModels.assertValues(*values) {
             //when
@@ -55,7 +58,7 @@ class PostsViewModelTest {
     @Test
     fun getPostsNotCalledAgain() {
         //given
-        val postsOperations = spy(FakeErrorPostsOperations())
+        val postsOperations = spy(FakeErrorPostDetailOperations())
         val viewModel = PostsViewModel(postsOperations, ImmediateSchedulersProvider())
 
         //when
