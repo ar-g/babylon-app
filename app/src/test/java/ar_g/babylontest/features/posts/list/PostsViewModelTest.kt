@@ -1,72 +1,62 @@
 package ar_g.babylontest.features.posts.list
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import ar_g.babylontest.features.posts.fakes.FakeErrorPostDetailOperations
-import ar_g.babylontest.features.posts.fakes.FakePostDetailOperations
-import ar_g.babylontest.shared.ImmediateSchedulersProvider
+import ar_g.babylontest.features.posts.detail.fakes.FakeErrorPostDetailOperations
 import ar_g.babylontest.shared.ui.Lce
-import org.junit.Rule
-import org.junit.Test
-import org.mockito.Mockito.*
+import com.babylon.orbit.BaseOrbitContainer
+import com.example.posts_sdk.PostsApi
+import com.example.posts_sdk.core.wrapCall
+import com.example.posts_sdk.domain.response.PostUiModel
+import io.reactivex.observers.TestObserver
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.gherkin.Feature
 
-class PostsViewModelTest: Spek({
+class PostsMiddlewareTest : Spek({
 
-}) {
-    @get:Rule
-    val rule = InstantTaskExecutorRule()
+    Feature("PostsViewModel") {
+        val POST = PostUiModel(0, 0, "title", "body")
+        val POSTS = mutableListOf(POST)
+        val ERROR_MSG = "ERROR_MSG"
 
-    /*STATE TESTS*/
+        val api by memoized { mock(PostsApi::class.java) }
+        val postsMiddleware by memoized { PostsMiddleware(api) }
+        val container by memoized { BaseOrbitContainer(postsMiddleware) }
 
-    @Test
-    fun getPostsReturnsCorrectStates() {
+        Scenario("getPosts success") {
+            lateinit var stateObserver: TestObserver<Lce<List<PostUiModel>>>
 
-        //given
-        val viewModel = PostsViewModel(FakePostDetailOperations(), ImmediateSchedulersProvider())
+            Given("connected container"){
+                `when`(api.getPosts()).thenReturn(wrapCall { POSTS })
+                stateObserver = container.orbit.test()
+            }
 
-        //then
-        val values = arrayOf(
-            Lce.Loading<List<com.example.posts_sdk.domain.response.PostUiModel>>(),
-            Lce.Content<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakePostDetailOperations.POSTS)
-        )
-        viewModel.postsUiModels.assertValues(*values) {
-            //when
-            viewModel.getPosts()
+            Then("states are correct") {
+                val values = arrayOf(
+                    Lce.Loading<List<PostUiModel>>(),
+                    Lce.Content<List<PostUiModel>>(POSTS)
+                )
+
+                stateObserver.awaitCount(2).assertValues(*values)
+            }
+        }
+
+        Scenario("getPosts error"){
+            lateinit var stateObserver: TestObserver<Lce<List<PostUiModel>>>
+
+            Given("connected container"){
+                `when`(api.getPosts()).thenReturn(wrapCall { throw Throwable(ERROR_MSG) })
+                stateObserver = container.orbit.test()
+            }
+
+            Then("states are correct") {
+                val values = arrayOf(
+                    Lce.Loading<List<PostUiModel>>(),
+                    Lce.Error<List<PostUiModel>>(FakeErrorPostDetailOperations.ERROR_MSG)
+                )
+
+                stateObserver.awaitCount(2).assertValues(*values)
+            }
         }
     }
-
-    @Test
-    fun getPostsReturnsCorrectStatesWhenErrorHappens() {
-        val viewModel = PostsViewModel(
-            FakeErrorPostDetailOperations(),
-            ImmediateSchedulersProvider()
-        )
-
-        //then
-        val values = arrayOf(
-            Lce.Loading<List<com.example.posts_sdk.domain.response.PostUiModel>>(),
-            Lce.Error<List<com.example.posts_sdk.domain.response.PostUiModel>>(FakeErrorPostDetailOperations.ERROR_MSG)
-        )
-        viewModel.postsUiModels.assertValues(*values) {
-            //when
-            viewModel.getPosts()
-        }
-    }
-
-    /*BEHAVIOR TESTS*/
-
-    @Test
-    fun getPostsNotCalledAgain() {
-        //given
-        val postsOperations = spy(FakeErrorPostDetailOperations())
-        val viewModel = PostsViewModel(postsOperations, ImmediateSchedulersProvider())
-
-        //when
-        viewModel.getPosts()
-        viewModel.getPosts()
-
-        //then
-        verify(postsOperations, times(1)).getPosts()
-    }
-}
-
+})

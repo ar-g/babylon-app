@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import ar_g.babylontest.features.posts.detail.mapper.PostDetailMapperImpl
 import ar_g.babylontest.features.posts.detail.usecase.PostDetailOperations
 import ar_g.babylontest.features.posts.detail.usecase.PostDetailOperationsImpl
+import ar_g.babylontest.features.posts.list.PostsMiddleware
 import ar_g.babylontest.shared.rx.AppSchedulerProvider
 import ar_g.babylontest.shared.rx.SchedulersProvider
 import ar_g.babylontest.shared.api.Api
@@ -38,6 +39,8 @@ interface ServiceLocator {
     fun schedulersProvider(): SchedulersProvider
 
     fun postsApi(): PostsApi
+
+    fun postsMiddleware() : PostsMiddleware
 }
 
 class AppServiceLocator(private val appContext: Context) : ServiceLocator {
@@ -62,4 +65,6 @@ class AppServiceLocator(private val appContext: Context) : ServiceLocator {
     override fun schedulersProvider() = schedulersProvider
 
     override fun postsApi() = PostsSdk.apiInstance
+
+    override fun postsMiddleware() = PostsMiddleware(postsApi())
 }

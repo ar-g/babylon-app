@@ -1,4 +1,4 @@
-package ar_g.babylontest.features.posts.fakes
+package ar_g.babylontest.features.posts.detail.fakes
 
 import ar_g.babylontest.features.posts.detail.usecase.PostDetailOperations
 import ar_g.babylontest.features.posts.detail.PostDetailUiModel

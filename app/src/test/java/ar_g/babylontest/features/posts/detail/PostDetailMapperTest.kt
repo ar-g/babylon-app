@@ -1,8 +1,7 @@
 package ar_g.babylontest.features.posts.detail
 
-import ar_g.babylontest.features.posts.detail.PostDetailUiModel
 import ar_g.babylontest.features.posts.detail.mapper.PostDetailMapperImpl
-import ar_g.babylontest.features.posts.fakes.FakeResStorage
+import ar_g.babylontest.features.posts.detail.fakes.FakeResStorage
 import ar_g.babylontest.shared.api.model.Comment
 import ar_g.babylontest.shared.api.model.User
 import com.example.posts_sdk.domain.response.PostUiModel

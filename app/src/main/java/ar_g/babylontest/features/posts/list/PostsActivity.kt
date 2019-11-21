@@ -31,7 +31,7 @@ class PostsActivity : AppCompatActivity() {
         srl.isEnabled = false
 
         val serviceLocator = ServiceLocator.instance(applicationContext)
-        val factory = PostsViewModelFactory(serviceLocator.postsApi())
+        val factory = PostsViewModelFactory(serviceLocator.postsMiddleware())
         val postsViewModel: PostsViewModel = ViewModelProviders.of(this, factory).get(PostsViewModel::class.java)
 
         postsViewModel.connect(this, stateConsumer = { lce: Lce<List<PostUiModel>> ->

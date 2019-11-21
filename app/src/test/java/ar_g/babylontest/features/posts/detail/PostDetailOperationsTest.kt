@@ -2,8 +2,8 @@ package ar_g.babylontest.features.posts.detail
 
 import ar_g.babylontest.features.posts.detail.mapper.PostDetailMapper
 import ar_g.babylontest.features.posts.detail.usecase.PostDetailOperationsImpl
-import ar_g.babylontest.features.posts.fakes.FakeApi
-import ar_g.babylontest.features.posts.fakes.FakeMapper
+import ar_g.babylontest.features.posts.detail.fakes.FakeApi
+import ar_g.babylontest.features.posts.detail.fakes.FakeMapper
 import ar_g.babylontest.shared.ImmediateSchedulersProvider
 import ar_g.babylontest.shared.api.Api
 import io.reactivex.Single

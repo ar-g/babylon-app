@@ -1,8 +1,8 @@
 package ar_g.babylontest.features.posts.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import ar_g.babylontest.features.posts.fakes.FakeErrorPostDetailOperations
-import ar_g.babylontest.features.posts.fakes.FakePostDetailOperations
+import ar_g.babylontest.features.posts.detail.fakes.FakeErrorPostDetailOperations
+import ar_g.babylontest.features.posts.detail.fakes.FakePostDetailOperations
 import ar_g.babylontest.shared.ImmediateSchedulersProvider
 import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.assertValues
