@@ -1,7 +1,7 @@
 package ar_g.babylontest.shared.api
 
 import ar_g.babylontest.shared.api.model.Comment
-import ar_g.babylontest.shared.api.model.Post
+import com.example.posts_sdk.gateway.network.response.Post
 import ar_g.babylontest.shared.api.model.User
 import io.reactivex.Single
 import retrofit2.Retrofit
@@ -12,9 +12,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Api {
-
-    @GET("/posts")
-    fun posts(): Single<List<Post>>
 
     @GET("/users/{id}")
     fun user(@Path("id") userId: Int): Single<User>

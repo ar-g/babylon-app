@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import e.ar_g.babylontest.R
 import kotlinx.android.synthetic.main.post_item.view.*
 
-class PostsAdapter(private val itemClick: (PostUiModel) -> Unit) :
+class PostsAdapter(private val itemClick: (com.example.posts_sdk.domain.response.PostUiModel) -> Unit) :
     RecyclerView.Adapter<PostsViewHolder>() {
 
-    private val data = mutableListOf<PostUiModel>()
+    private val data = mutableListOf<com.example.posts_sdk.domain.response.PostUiModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
         val postsViewHolder = PostsViewHolder(view)
 
-        postsViewHolder.itemView.tvTitle.setOnClickListener {
+        postsViewHolder.itemView.tvPostTitle.setOnClickListener {
             val position = postsViewHolder.adapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 itemClick(data[position])
@@ -33,7 +33,7 @@ class PostsAdapter(private val itemClick: (PostUiModel) -> Unit) :
         holder.bind(data[position])
     }
 
-    fun setData(data: List<PostUiModel>) {
+    fun setData(data: List<com.example.posts_sdk.domain.response.PostUiModel>) {
         this.data.apply {
             clear()
             addAll(data)

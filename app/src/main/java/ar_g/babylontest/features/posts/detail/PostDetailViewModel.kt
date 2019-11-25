@@ -3,14 +3,14 @@ package ar_g.babylontest.features.posts.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ar_g.babylontest.features.posts.PostsOperations
-import ar_g.babylontest.features.posts.list.PostUiModel
+import ar_g.babylontest.features.posts.detail.usecase.PostDetailOperations
 import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.rx.SchedulersProvider
+import com.example.posts_sdk.domain.response.PostUiModel
 import io.reactivex.disposables.Disposable
 
 class PostDetailViewModel(
-    private val postsOperations: PostsOperations,
+    private val postDetailOperations: PostDetailOperations,
     private val schedulersProvider: SchedulersProvider
 ): ViewModel() {
 
@@ -23,7 +23,7 @@ class PostDetailViewModel(
 
     fun getPostDetail(postUiModel: PostUiModel) {
         if (_postDetailUiModel.value == null) {
-            disposable = postsOperations.getPostDetail(postUiModel)
+            disposable = postDetailOperations.getPostDetail(postUiModel)
                 .observeOn(schedulersProvider.mainThread())
                 .doOnSubscribe {
                     _postDetailUiModel.value = Lce.Content(

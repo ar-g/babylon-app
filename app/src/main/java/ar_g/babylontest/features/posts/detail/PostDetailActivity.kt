@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import e.ar_g.babylontest.R
-import ar_g.babylontest.features.posts.list.PostUiModel
+import com.example.posts_sdk.domain.response.PostUiModel
 import ar_g.babylontest.shared.ui.Lce
 import ar_g.babylontest.shared.di.ServiceLocator
 import kotlinx.android.synthetic.main.activity_post_detail.*
@@ -28,7 +28,7 @@ class PostDetailActivity : AppCompatActivity() {
         val factory = PostDetailViewModelFactory(serviceLocator.postsOperations(), serviceLocator.schedulersProvider())
         val postDetailViewModel = ViewModelProviders.of(this, factory).get(PostDetailViewModel::class.java)
 
-        val postUiModel = intent.getParcelableExtra<PostUiModel>(BUNDLE_KEY)
+        val postUiModel = intent.getParcelableExtra<com.example.posts_sdk.domain.response.PostUiModel>(BUNDLE_KEY)
         if (postUiModel != null) {
             postDetailViewModel.postDetailUiModel.observe(this, Observer { lce ->
                 when (lce) {
