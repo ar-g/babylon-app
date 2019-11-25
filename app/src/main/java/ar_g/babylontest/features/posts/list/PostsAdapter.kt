@@ -15,7 +15,7 @@ class PostsAdapter(private val itemClick: (com.example.posts_sdk.domain.response
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
         val postsViewHolder = PostsViewHolder(view)
 
-        postsViewHolder.itemView.tvTitle.setOnClickListener {
+        postsViewHolder.itemView.tvPostTitle.setOnClickListener {
             val position = postsViewHolder.adapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 itemClick(data[position])
